@@ -1,1 +1,5 @@
-mysql/
+# ignore mysql folder
+mysql/db/
+
+#ignore node_modules folder
+nodejs/node_modules/
