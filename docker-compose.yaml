@@ -11,12 +11,14 @@ services:
       - node-network
     ports: 
       - "8080:80"
+    depends_on: 
+       - node
 
   node:
     build: 
       context: ./nodejs
       dockerfile: Dockerfile
-    container_name: app
+    container_name: node
     entrypoint: dockerize -wait tcp://db:3306 -timeout 30s docker-entrypoint.sh
     command: node index.js
     networks: 
