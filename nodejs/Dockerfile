@@ -2,8 +2,6 @@ FROM node:15
 
 WORKDIR /usr/src/app
 
-COPY . /usr/src/app/
-
 RUN apt-get update && \
     apt-get install -y wget && \
     apt-get install -y nodejs
@@ -13,8 +11,8 @@ RUN wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSI
     && tar -C /usr/local/bin -xzvf dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
     && rm dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
 
-RUN npm install express
-RUN npm install mysql
-RUN npm install collections
+COPY . /usr/src/app/
+
+RUN npm install
 
 EXPOSE 3000
